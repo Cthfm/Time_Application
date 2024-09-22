@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Converter</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+CBSt6LkuzJ+eivlI5Wl30RYD7z8" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            font-size: 1.5rem;
+            background-color: #007bff;
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+        .form-select {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            border-radius: 10px;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    Time Zone Converter
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">UTC Time: <strong>{{ utc_time }}</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Converted Time ({{ selected_timezone }}): <strong>{{ local_time }}</strong></h6>
+                    <form method="POST" class="mt-4">
+                        <div class="form-group">
+                            <label for="timezone" class="form-label">Select Time Zone:</label>
+                            <select name="timezone" id="timezone" class="form-select">
+                                {% for timezone in timezones %}
+                                    <option value="{{ timezone }}" {% if timezone == selected_timezone %}selected{% endif %}>{{ timezone }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Convert</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka1oXNzLQvf4IbVgktW5uvj+4EYDeeQHj4l2d5CHUL0pcZ3xlN4kcd8avwfIvvKv" crossorigin="anonymous"></script>
+</body>
+</html>
